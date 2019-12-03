@@ -14,6 +14,7 @@ const INITIAL_STATE = {
     8: { id: 8, value: null }
   },
   moves: Array(9).fill(null),
+  playedMoves: [],
   winner: null
 };
 
@@ -33,7 +34,25 @@ export default (state = INITIAL_STATE, action) => {
           }
         },
         moves: newMoves,
+        playedMoves: [...state.playedMoves, action.payload.square.id],
         winner: checkWinner(newMoves)
+      };
+    case "UNDO_MOVE":
+      const lastItem = state.playedMoves[state.playedMoves.length - 1];
+      const nullMove = (state.moves[lastItem] = null);
+      return {
+        ...state,
+        playedMoves: state.playedMoves.filter(
+          playedMove => playedMove !== lastItem
+        ),
+        moves: [...state.moves, nullMove],
+        table: {
+          ...state.table,
+          [lastItem]: {
+            ...state.table[lastItem],
+            value: null
+          }
+        }
       };
     case tableType.RESTART_GAME:
       return INITIAL_STATE;

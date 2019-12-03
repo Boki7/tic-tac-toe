@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 
 const Square = ({ square, playMove, player, winner, setActivePlayer }) => {
   const handlePlayMove = (square, player) => {
-    if (square.value === null && !winner && player.value !== "") {
+    if (square.value === null && !winner && player) {
       playMove(square, player);
       setActivePlayer();
     }

@@ -10,6 +10,12 @@ export const playMove = (square, player) => {
   };
 };
 
+export const undoMove = () => {
+  return {
+    type: "UNDO_MOVE"
+  };
+};
+
 export const restartGame = () => {
   return {
     type: tableType.RESTART_GAME

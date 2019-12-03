@@ -63,6 +63,20 @@ export default (state = INITIAL_STATE, action) => {
           isPlaying: !setIsPlaying(action.payload.player.text)
         }
       };
+    case tableType.UNDO_MOVE:
+      return {
+        ...state,
+        activePlayer:
+          state.activePlayer.text === "Player1" ? state.player2 : state.player1,
+        player1: {
+          ...state.player1,
+          isPlaying: setIsPlaying(state.activePlayer.text)
+        },
+        player2: {
+          ...state.player2,
+          isPlaying: !setIsPlaying(state.activePlayer.text)
+        }
+      };
     case tableType.RESTART_GAME:
       return INITIAL_STATE;
     default:

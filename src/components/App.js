@@ -3,15 +3,19 @@ import Player from "./Player/Player";
 import Table from "./Table/Table";
 import { connect } from "react-redux";
 import { setActivePlayer } from "../redux/players/players.actions";
+import Undo from "./Undo/Undo";
 
 import "./App.css";
 
 function App({ player1, player2, winner }) {
   return (
-    <div className="app">
-      <Player player={player1} winner={winner} />
-      <Table />
-      <Player player={player2} winner={winner} />
+    <div>
+      <div className="app">
+        <Player player={player1} winner={winner} />
+        <Table />
+        <Player player={player2} winner={winner} />
+      </div>
+      <Undo />
     </div>
   );
 }
