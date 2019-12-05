@@ -1,11 +1,3 @@
-export const setIsPlaying = player => {
-  if (player === "Player1") {
-    return false;
-  } else if (player === "Player2") {
-    return true;
-  }
-};
-
 export const chooseStartingValue = (firstValue, secondValue, player) => {
   if (player === "Player1") {
     return {
@@ -20,6 +12,20 @@ export const chooseStartingValue = (firstValue, secondValue, player) => {
   }
 };
 
-// action.payload.player.text === "Player1"
-// ? action.payload.firstValue
-// : action.payload.secondValue
+export const startingPlayerSettings = (value, player) => {
+  return {
+    ...player,
+    isPlaying: value === "x" ? true : false,
+    value,
+    text: player.text
+  }
+}
+
+
+
+export const setPlayerIsPlaying = (player) => {
+  return {
+    ...player,
+    isPlaying: !player.isPlaying
+  }
+}

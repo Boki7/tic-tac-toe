@@ -37,7 +37,7 @@ export default (state = INITIAL_STATE, action) => {
         playedMoves: [...state.playedMoves, action.payload.square.id],
         winner: checkWinner(newMoves)
       };
-    case "UNDO_MOVE":
+    case tableType.UNDO_MOVE:
       const lastItem = state.playedMoves[state.playedMoves.length - 1];
       const nullMove = (state.moves[lastItem] = null);
       return {

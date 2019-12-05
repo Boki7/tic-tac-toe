@@ -12,7 +12,7 @@ export const playMove = (square, player) => {
 
 export const undoMove = () => {
   return {
-    type: "UNDO_MOVE"
+    type: tableType.UNDO_MOVE
   };
 };
 
